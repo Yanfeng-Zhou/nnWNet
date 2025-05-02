@@ -41,10 +41,10 @@ nnUNetv2_predict -i .../nnUNetFrame/nnUNet_raw/Dataset100_your_dataset/imagesTs/
 
 - **Summary and Abstraction**
 <p align="center">
-<img src="https://github.com/Yanfeng-Zhou/nnWNet/blob/main/figure/Overview.png" width="100%" >
+<img src="https://github.com/Yanfeng-Zhou/nnWNet/blob/main/figure/Summary%20of%20three%20architectures%20in%20biomedical%20image%20segmentation.png" width="100%" >
 </p>
 <p align="center">
-<img src="https://github.com/Yanfeng-Zhou/nnWNet/blob/main/figure/Overview.png" width="100%" >
+<img src="https://github.com/Yanfeng-Zhou/nnWNet/blob/main/figure/Demonstration%20of%20various%20architectures%20along%20with%20their%20corresponding%20models.png" width="100%" >
 </p>
 
 > Three main architectures: **encoder-decoder**, **encoder-bottleneck-decoder**, and **encoder-bridge-decoder**.
@@ -69,14 +69,14 @@ nnUNetv2_predict -i .../nnUNetFrame/nnUNet_raw/Dataset100_your_dataset/imagesTs/
    
 - **Address the Contradiction**
 <p align="center">
-<img src="https://github.com/Yanfeng-Zhou/nnWNet/blob/main/figure/Overview.png" width="100%" >
+<img src="https://github.com/Yanfeng-Zhou/nnWNet/blob/main/figure/Transmission%20of%20global%20and%20local%20features.png" width="100%" >
 </p>
 
 > The global and local features in ~~W~~Net can flow continuously throughout the model and exchange information with each other at each scale, which not only addresses the contradiction, but also effectively fuses the global and local features into a unified representation.
 
 - **Effective Receptive Field**
 <p align="center">
-<img src="https://github.com/Yanfeng-Zhou/nnWNet/blob/main/figure/Qualitative%20Comparison.png" width="100%" >
+<img src="https://github.com/Yanfeng-Zhou/nnWNet/blob/main/figure/Effective%20ReceptiveFields.png" width="100%" >
 <br>Effective receptive fields (ERFs) of LSBs and GSBs on ISIC2017, Kvasir-SEG, CREMI (average over 100 images). Top row: The ERFs of residual blocks of LSBs in the second encoder. Middle row: The ERFs of residual blocks of LSBs in the first decoder. Botton row: The ERFs of 11×11 depth-wise convolution self-attentions of GSBs between the first decoder and the second encoder. (a) Scale 1. (b) Scale 2. (c) Scale 3. (d) Scale 4.
 </p>
 
@@ -90,17 +90,17 @@ nnUNetv2_predict -i .../nnUNetFrame/nnUNet_raw/Dataset100_your_dataset/imagesTs/
 
 ## Quantitative Comparison
 <p align="center">
-<img src="https://github.com/Yanfeng-Zhou/GobletNet/blob/main/figure/Comparison%20results%20on%20EPFL%2C%20%20CREMI%2C%20SNEMI3D%20and%20UroCell.png" width="100%" >
+<img src="https://github.com/Yanfeng-Zhou/nnWNet/blob/main/figure/Comparisonwithstate-of-the-artmodelson2Dand3Ddatasets.png" width="100%" >
 </p>
 
 
 ## Qualitative Comparison
 <p align="center">
-<img src="https://github.com/Yanfeng-Zhou/nnWNet/blob/main/figure/Qualitative%20Comparison.png" width="100%" >
+<img src="https://github.com/Yanfeng-Zhou/nnWNet/blob/main/figure/Qualitative%20results%20of%20different%20models%20on%202D%20datasets.png" width="100%" >
 <br>(a) Raw images. (b) Ground truth. (c) TransAttUNet. (d) nnUNet. (e) nn~~W~~Net.
 </p>
 <p align="center">
-<img src="https://github.com/Yanfeng-Zhou/nnWNet/blob/main/figure/Qualitative%20Comparison.png" width="100%" >
+<img src="https://github.com/Yanfeng-Zhou/nnWNet/blob/main/figure/Qualitative%20results%20of%20different%20models%20on%203D%20datasets.png" width="100%" >
 <br>(a) Raw images. (b) Ground truth. (c) CoTr. (d) nnUNet. (e) nn~~W~~Net.
 </p>
 
