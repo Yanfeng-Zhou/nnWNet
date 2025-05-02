@@ -69,7 +69,7 @@ nnUNetv2_predict -i .../nnUNetFrame/nnUNet_raw/Dataset100_your_dataset/imagesTs/
    
 - **Address the Contradiction**
 <p align="center">
-<img src="https://github.com/Yanfeng-Zhou/nnWNet/blob/main/figure/Transmission%20of%20global%20and%20local%20features.png" width="100%" >
+<img src="https://github.com/Yanfeng-Zhou/nnWNet/blob/main/figure/Transmission%20of%20global%20and%20local%20features.png" width="60%" >
 </p>
 
 > The global and local features in ~~W~~Net can flow continuously throughout the model and exchange information with each other at each scale, which not only addresses the contradiction, but also effectively fuses the global and local features into a unified representation.
