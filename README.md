@@ -97,11 +97,11 @@ nnUNetv2_predict -i .../nnUNetFrame/nnUNet_raw/Dataset100_your_dataset/imagesTs/
 ## Qualitative Comparison
 <p align="center">
 <img src="https://github.com/Yanfeng-Zhou/nnWNet/blob/main/figure/Qualitative%20results%20of%20different%20models%20on%202D%20datasets.png" width="100%" >
-<br>(a) Raw images. (b) Ground truth. (c) TransAttUNet. (d) nnUNet. (e) nn~~W~~Net.
+<br>(a) Raw images. (b) Ground truth. (c) TransAttUNet. (d) nnUNet. (e) nnWNet.
 </p>
 <p align="center">
 <img src="https://github.com/Yanfeng-Zhou/nnWNet/blob/main/figure/Qualitative%20results%20of%20different%20models%20on%203D%20datasets.png" width="100%" >
-<br>(a) Raw images. (b) Ground truth. (c) CoTr. (d) nnUNet. (e) nn~~W~~Net.
+<br>(a) Raw images. (b) Ground truth. (c) CoTr. (d) nnUNet. (e) nnWNet.
 </p>
 
 ## Citation
