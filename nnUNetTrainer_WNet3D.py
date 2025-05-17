@@ -333,75 +333,47 @@ class WNet3D(nn.Module):
             r = outputs[0]
         return r
 
-# from torch._dynamo import OptimizedModule
-# from nnunetv2.training.nnUNetTrainer.nnUNetTrainer import nnUNetTrainer
-# class nnUNetTrainer_WNet3D(nnUNetTrainer):
-#     def __init__(
-#         self,
-#         plans: dict,
-#         configuration: str,
-#         fold: int,
-#         dataset_json: dict,
-#         unpack_dataset: bool = True,
-#         device: torch.device = torch.device("cuda"),
-#     ):
-#         super().__init__(plans, configuration, fold, dataset_json, unpack_dataset, device)
-#         self.enable_deep_supervision = True
-#         # self.oversample_foreground_percent = 0.6
-#         self.initial_lr = 1e-2
-#         # self.weight_decay = 3e-5
-#         self.num_epochs = 500
-#
-#     def set_deep_supervision_enabled(self, enabled: bool):
-#         """
-#         This function is specific for the default architecture in nnU-Net. If you change the architecture, there are
-#         chances you need to change this as well!
-#         """
-#         if self.is_ddp:
-#             mod = self.network.module
-#         else:
-#             mod = self.network
-#         if isinstance(mod, OptimizedModule):
-#             mod = mod._orig_mod
-#         mod.deep_supervised = enabled
-#
-#     @staticmethod
-#     def build_network_architecture(architecture_class_name,
-#                                    arch_init_kwargs,
-#                                    arch_init_kwargs_req_import,
-#                                    num_input_channels,
-#                                    num_output_channels,
-#                                    enable_deep_supervision):
-#         # patch_size = self.configuration_manager.patch_size
-#         from dynamic_network_architectures.initialization.weight_init import InitWeights_He
-#         model = WNet3D(in_channel=num_input_channels, num_classes=num_output_channels, deep_supervised=enable_deep_supervision)
-#         model.apply(InitWeights_He(1e-2))
-#         return model
+from torch._dynamo import OptimizedModule
+from nnunetv2.training.nnUNetTrainer.nnUNetTrainer import nnUNetTrainer
+class nnUNetTrainer_WNet3D(nnUNetTrainer):
+    def __init__(
+        self,
+        plans: dict,
+        configuration: str,
+        fold: int,
+        dataset_json: dict,
+        unpack_dataset: bool = True,
+        device: torch.device = torch.device("cuda"),
+    ):
+        super().__init__(plans, configuration, fold, dataset_json, unpack_dataset, device)
+        self.enable_deep_supervision = True
+        # self.oversample_foreground_percent = 0.6
+        self.initial_lr = 1e-2
+        # self.weight_decay = 3e-5
+        self.num_epochs = 500
 
-if __name__ == '__main__':
+    def set_deep_supervision_enabled(self, enabled: bool):
+        """
+        This function is specific for the default architecture in nnU-Net. If you change the architecture, there are
+        chances you need to change this as well!
+        """
+        if self.is_ddp:
+            mod = self.network.module
+        else:
+            mod = self.network
+        if isinstance(mod, OptimizedModule):
+            mod = mod._orig_mod
+        mod.deep_supervised = enabled
 
-    model = WNet3D(1, 2, deep_supervised=True)
-    total = sum([param.nelement() for param in model.parameters()])
-    from thop import profile, clever_format
-
-    input1 = torch.randn(1, 1, 48, 48, 48)
-    flops, params = profile(model, inputs=(input1, ))
-    print(flops, params)
-    macs, params = clever_format([flops, params], "%.3f")
-    print(macs)
-    print(params)
-    print(total)
-
-    model = WNet3D(1, 10, deep_supervised=True)
-    model.train()
-    input1 = torch.rand(2, 1, 48, 48, 48)
-    output = model(input1)
-    # loss_train = criterion(output, mask)
-    # loss_train.backward()
-    # output = output.data.cpu().numpy()
-    print(output[0].data.cpu().numpy().shape)
-    print(output[1].data.cpu().numpy().shape)
-    print(output[2].data.cpu().numpy().shape)
-    print(output[3].data.cpu().numpy().shape)
-    print(output[4].data.cpu().numpy().shape)
-    # print(loss_train)
+    @staticmethod
+    def build_network_architecture(architecture_class_name,
+                                   arch_init_kwargs,
+                                   arch_init_kwargs_req_import,
+                                   num_input_channels,
+                                   num_output_channels,
+                                   enable_deep_supervision):
+        # patch_size = self.configuration_manager.patch_size
+        from dynamic_network_architectures.initialization.weight_init import InitWeights_He
+        model = WNet3D(in_channel=num_input_channels, num_classes=num_output_channels, deep_supervised=enable_deep_supervision)
+        model.apply(InitWeights_He(1e-2))
+        return model
